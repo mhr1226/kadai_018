@@ -1,18 +1,82 @@
+$colors:#ffd9df,#87ceeb;
+// 背景色で使用
+$margin-set:20px auto;
+// marginの上下余白20pxの設定
+$container-width:800px;
+// 一番大きい値のwidthにのみ適用（使用回数多いため）
+@mixin container-set{
+width:$container-width;
+text-align: center;
+margin: 0 auto;
+}
+@mixin width($size){
+width:$size;
+};
+
 #top{
-  width: 800px;
+  @include container-set;
   background-color:  #dcc9f4;
-  padding: 20px 0;
-  margin: auto;
-  text-align: center;
-
+  margin: $margin-set;
   
 
-  
-  
-    .topchild{
+  .topchild{
       
-      width: 20%;
+      @include width(20%);
       display: inline-block;
-      background-color: #ffd9df;
+      background-color:nth($colors, 1);
+    }
+}
+
+#middle{
+  @include container-set;
+  height: 800px;
+  margin: $margin-set;
+  background-color:nth($colors, 1);
+  position: relative;
+  
+  #middle-child01,
+  #middle-child02,
+  #middle-child03{
+    @include width(200px);
+    height: 200px;
+    background-color:nth($colors, 2);
+  }
+  #middle-child01{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+  }
+  #middle-child02{
+    position: absolute;
+    top: 300px;
+    left: 300px;
+  }
+  #middle-child03{
+    position: absolute;
+    top: 500px;
+    left: 500px;
+  }
+}
+
+#bottom{
+  @include container-set;
+  height: 300px;
+  background-color:nth($colors, 2);
+
+
+  #bottom-child01,
+  #bottom-child02,
+  #bottom-child03{
+  @include width(400px);
+  height: 100px;
+  background-color: #e5dcf0;
+  }
+  #bottom-child02{
+    position: relative;
+    left: 200px;
+  }
+    #bottom-child03{
+      position: relative;
+      left: 400px;
     }
 }
