@@ -20,6 +20,9 @@ height: $height;
 }
 // widthとheight,background-colorの記述を統一したかった為使用
 
+// if文は使わない要素を省略できるようにする為に記述しました。
+// 今回は使用頻度として少ないですが、練習も兼ねて入れてます。
+
 @mixin space($margin:null,$padding:null){
 @if $margin != null{
     margin:$margin;
@@ -29,6 +32,7 @@ height: $height;
   }
 }
 // marginとpaddingの指定を統一したかった為
+// 今回はpaddingは使いませんでしたが、記述の練習と動作チェックをしたかった為入れてます。
 
 @mixin position-set($position,$top:0,$left:0){
   position: $position;
@@ -36,25 +40,28 @@ height: $height;
   left: $left;
 }
 // 重複した記述を避けるために使用
+// positionを除き、省略した際に初期値が0になるよう指定してます。
 
 // 以上。
 // 以下より課題の記述
 
 #top{
   @include box-size($container-width,auto,#dcc9f4);
+  // heightを省略した場合、初期値が0となり要素が表示されなくなった為、ここではautoを使用しました
   @include space($margin-set,null);
     text-align: center;
 
   .topchild{
     @include box-size(20%, auto,nth($colors, 1));
-
+    // height部分を省略するとレイアウトが崩れた為autoにしてます。
       display: inline-block;
     }
 }
 
 #middle{
   @include box-size($container-width,800px,nth($colors, 1));
-  @include position-set(relative,0,0);
+  @include position-set(relative);
+  // top,leftは必要ない為省略してます
 
   @include space($margin-set,null);
   
@@ -78,6 +85,7 @@ height: $height;
   @include box-size($container-width,300px,nth($colors, 2));
   
   @include space(0 auto,null);
+// bottom要素を中央揃えにする為に使用
 
   #bottom-child01,
   #bottom-child02,
