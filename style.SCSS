@@ -6,11 +6,29 @@ $margin-set:20px auto;
 // marginの上下余白20pxの設定
 $container-width:800px;
 // 一番大きい値のwidthにのみ適用（使用回数多いため）
-@mixin box-size($width,$height){
-width:$width;
-height: $height
-};
-// widthとheightの記述を統一したかった為使用
+@mixin box-size($width:null,$height:null,$background-color:null){
+@if $width != null{
+    width:$width;
+    }
+height: $height;
+@if $height != null{
+    height: $height;
+    }
+@if $background-color != null{
+    background-color:$background-color;
+    }
+}
+// widthとheight,background-colorの記述を統一したかった為使用
+
+@mixin space($margin:null,$padding:null){
+@if $margin != null{
+    margin:$margin;
+  }
+  @if $padding != null{
+      padding:$padding;
+  }
+}
+// marginとpaddingの指定を統一したかった為
 
 @mixin position-set($position,$top:0,$left:0){
   position: $position;
@@ -23,33 +41,27 @@ height: $height
 // 以下より課題の記述
 
 #top{
-  @include box-size(800px,0);
-
-    background-color:  #dcc9f4;
-    margin: $margin-set;
+  @include box-size($container-width,auto,#dcc9f4);
+  @include space($margin-set,null);
     text-align: center;
 
   .topchild{
-    @include box-size(20%, 0);
+    @include box-size(20%, auto,nth($colors, 1));
 
       display: inline-block;
-      background-color:nth($colors, 1);
     }
 }
 
 #middle{
-  @include box-size(800px,800px);
-  @include position-set(relative);
+  @include box-size($container-width,800px,nth($colors, 1));
+  @include position-set(relative,0,0);
 
-    margin: $margin-set;
-    background-color:nth($colors, 1);
+  @include space($margin-set,null);
   
   #middle-child01,
   #middle-child02,
   #middle-child03{
-    @include box-size(200px,200px);
-
-      background-color:nth($colors, 2);
+    @include box-size(200px,200px,nth($colors, 2));
   }
   #middle-child01{
     @include position-set(absolute,100px,100px);
@@ -63,17 +75,14 @@ height: $height
 }
 
 #bottom{
-  @include box-size(800px,300px);
-
-    background-color:nth($colors, 2);
-    margin: 0 auto;
+  @include box-size($container-width,300px,nth($colors, 2));
+  
+  @include space(0 auto,null);
 
   #bottom-child01,
   #bottom-child02,
   #bottom-child03{
-    @include box-size(400px,100px);
-
-      background-color: #e5dcf0;
+    @include box-size(400px,100px,#e5dcf0);
     }
   #bottom-child02{
     @include position-set(relative,0,200px);
