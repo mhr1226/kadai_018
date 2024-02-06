@@ -1,3 +1,16 @@
+html {
+  height: 2000px;
+  position: relative;
+}
+
+.relativeBox {
+  background-color: #ff0;
+  width: 5rem;
+  height: 5rem;
+  position: fixed;
+  right: 300px;
+  bottom: 0px;
+}
 #top {
   width: 800px;
   height: auto;

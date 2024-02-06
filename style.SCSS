@@ -45,6 +45,10 @@ height: $height;
 // 以上。
 // 以下より課題の記述
 
+@import '../テスト/positionプロパティ/position.SCSS';
+// ../は前のフォルダに戻る意味
+// その後にフォルダ名/ファイル名と記述する
+
 #top{
   @include box-size($container-width,auto,#dcc9f4);
   // heightを省略した場合、初期値が0となり要素が表示されなくなった為、ここではautoを使用しました
