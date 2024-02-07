@@ -24,13 +24,12 @@ height: $height;
 // if文は使わない要素を省略できるようにする為に記述しました。
 // 今回は使用頻度として少ないですが、練習も兼ねて入れてます。
 
-@mixin space($margin:null,$padding:null){
-@if $margin != null{
+@mixin space($margin,$padding){
+
     margin:$margin;
-  }
-  @if $padding != null{
+  
       padding:$padding;
-  }
+  
 }
 // marginとpaddingの指定を統一したかった為
 // 今回はpaddingは使いませんでしたが、記述の練習と動作チェックをしたかった為入れてます。
